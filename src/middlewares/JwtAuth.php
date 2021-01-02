@@ -26,25 +26,22 @@
 
         private function validateToken($headers){
 
-            if(isset($headers['HTTP_AUTHORIZATION'][0]) && strlen($headers['HTTP_AUTHORIZATION'][0]) > 0){
-
-                $this->jwt = $headers['HTTP_AUTHORIZATION'][0];
-
-                $parts = explode(" ", $this->jwt);
-
-                if(count($parts) !== 2)
-                    throw new \Exception('Token mal-formatado');
-
-                if($parts[0] !== 'Bearer')
-                    throw new \Exception('Tipo de token desconhecido');
-
-                $this->jwt = $parts[1];
-
-            } else {
-
+            if(!isset($headers['HTTP_AUTHORIZATION'][0]) || strlen($headers['HTTP_AUTHORIZATION'][0]) === 0)
                 throw new \Exception('Informe o token de autenticação');
 
-            }
+            $this->jwt = $headers['HTTP_AUTHORIZATION'][0];
+
+            $parts = explode(" ", $this->jwt);
+
+            if(count($parts) !== 2)
+                throw new \Exception('Token mal-formatado');
+
+            if($parts[0] !== 'Bearer')
+                throw new \Exception('Tipo de token desconhecido');
+
+            $this->jwt = $parts[1];
+
+         
 
         }
 
