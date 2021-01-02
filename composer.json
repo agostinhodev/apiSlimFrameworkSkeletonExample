@@ -1,0 +1,19 @@
+{
+    "require": {
+        "slim/slim": "3.*",
+        "firebase/php-jwt": "^5.2",
+        "dompdf/dompdf": "^0.8.5",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "nokitakaze/randomstring": "^0.2.1"
+    },
+
+    "autoload":{
+
+        "psr-4": {
+
+            "src\\": "src"
+
+        }
+    }
+}
