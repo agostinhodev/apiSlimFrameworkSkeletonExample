@@ -1,4 +1,4 @@
-# Ambiente de Desenvolvimento em Docker
+# Slim Framework - API em PHP
 
 O principal objetivo deste projeto é permitir a criação rápida e fácil de uma API em PHP usando o SlimFramework
 
