@@ -54,15 +54,15 @@
 
         private function checkExpirate(){
 
-            if(!isset($this->decoded['dataExpiracao']))
+            if(!isset($this->decoded['exp']))
                 throw new \Exception('Nenhuma data de expiração foi encontrada no token informado');
 
-            if($this->decoded['dataExpiracao'] !== 'no_expires')
-                if(strtotime($this->decoded['dataExpiracao']) < strtotime(date("Y-m-d H:i:s")))
+            if($this->decoded['exp'] !== 'no_expires')
+                if($this->decoded['exp'] < time())
                     throw new \Exception("Token expirado em " .
 
-                        date("d/m/Y", strtotime($this->decoded['dataExpiracao'])) . " às " .
-                        date("H:i:s", strtotime($this->decoded['dataExpiracao']))
+                        date("d/m/Y", strtotime($this->decoded['exp'])) . " às " .
+                        date("H:i:s", strtotime($this->decoded['exp']))
 
                     );
 
