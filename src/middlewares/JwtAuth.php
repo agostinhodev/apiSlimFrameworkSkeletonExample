@@ -78,8 +78,8 @@
                 $this->decode();
                 $this->checkExpirate();
 
-                if(isset($this->decoded['sessao']['usuario']))
-                    $request = $request->withAttribute('usuario', $this->decoded['sessao']['usuario']);
+                if(isset($this->decoded['sub']))
+                    $request = $request->withAttribute('usuario', $this->decoded['sub']);
 
                 $response = $next( $request, $response, null);
 
