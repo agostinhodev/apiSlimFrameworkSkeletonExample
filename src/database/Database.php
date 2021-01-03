@@ -43,19 +43,19 @@ class Database{
         $password = getenv('API_DB_PASSWORD');
 
         if(!$hostname)
-            throw new \Exception("It's necessary to provide a HOSTNAME for the connection");
+            throw new \Exception("It's necessary to provide a HOSTNAME for connection");
 
         if(!$database)
-            throw new \Exception("It's necessary to provide a DATABASE for the connection");
+            throw new \Exception("It's necessary to provide a DATABASE for connection");
 
         if(!$port)
-            throw new \Exception("It's necessary to provide a PORT for the connection");
+            throw new \Exception("It's necessary to provide a PORT for connection");
 
         if(!$username)
-            throw new \Exception("It's necessary to provide a USERNAME for the connection");
+            throw new \Exception("It's necessary to provide a USERNAME for connection");
 
         if(!$password)
-            throw new \Exception("It's necessary to provide a PASSWORD for the connection");
+            throw new \Exception("It's necessary to provide a PASSWORD for connection");
 
         $this->hostname = $hostname;
         $this->database = $database;
