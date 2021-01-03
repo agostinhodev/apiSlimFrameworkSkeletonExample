@@ -9,10 +9,18 @@ final class Auth{
     private $exp = NULL;
 
     public function __set($atrib, $value){
+
+        if(!property_exists($this, $atrib))
+            throw new \Exception("The attribute " . $atrib . " don't exists in " . get_class());
+
         $this->$atrib = $value;
     }
 
     public function __get($atrib){
+
+        if(!property_exists($this, $atrib))
+            throw new \Exception("The attribute " . $atrib . " don't exists in " . get_class());
+
         return $this->$atrib;
     }
 
@@ -23,7 +31,6 @@ final class Auth{
 
         if(is_null($type))
             throw new \Exception("It's necessary to provide a type in: " . get_class());
-
 
         switch($type){
 
@@ -42,6 +49,7 @@ final class Auth{
         if(is_null($this->__get("exp")))
             throw new \Exception("It's necessary to provide a exp to payload");
 
+        $payload['uid'] = bin2hex(random_bytes(20));
         $payload['iss'] = "api.techeasy.com.br";
         $payload['exp'] = $this->__get("exp");
         $payload['iat'] = time();

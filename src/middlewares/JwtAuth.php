@@ -16,7 +16,7 @@
 
                 case 'login':
 
-                    $this->key = getenv('API_JWT_TOKEN');
+                    $this->key = getenv('API_JWT_KEY_LOGIN');
 
                 break;
 
@@ -41,7 +41,7 @@
 
             $this->jwt = $parts[1];
 
-         
+
 
         }
 

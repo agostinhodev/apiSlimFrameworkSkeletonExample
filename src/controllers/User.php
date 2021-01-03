@@ -91,4 +91,37 @@ class User
 
     }
 
+    public function getInfo(Request $request, Response $response, array $args): Response
+    {
+
+        try {
+
+            //$this->mountConnectionDatabase();
+            //$this->pdo->beginTransaction();
+
+            $data['user'] = $request->getAttribute('usuario');
+
+            $this->response['message'] = "Welcome to our API. Your id is: " . $data['user'];
+            $this->httpStatusCode = 200;
+
+
+        }catch (\PDOException $pdoE){
+
+            $this->response['message'] = "Code " . $pdoE->getCode() . " | Info:" . $pdoE->getMessage();
+
+
+        }catch(\Exception $e){
+
+            if($this->pdo Instanceof \PDO)
+                $this->pdo->rollBack();
+
+            $this->response['message'] = $e->getMessage();
+
+        }
+
+        return $response
+            ->withJSON($this->response)
+            ->withStatus($this->httpStatusCode);
+
+    }
 }
