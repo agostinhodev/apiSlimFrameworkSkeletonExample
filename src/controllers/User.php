@@ -39,6 +39,15 @@ class User
             //$this->mountConnectionDatabase();
             //$this->pdo->beginTransaction();
 
+            $data['user'] = isset($request->getParsedBody()['user']) ? $request->getParsedBody()['user'] : NULL;
+            $data['password'] = isset($request->getParsedBody()['password']) ? $request->getParsedBody()['password'] : NULL;
+
+            if(is_null($data['user']))
+                throw new \Exception("Informe o usuário corretamente");
+
+            if(is_null($data['password']))
+                throw new \Exception("Informe a senha corretamente");
+
             $user = new UserModel();
             $user->__set('id', 1);
             $user->__set('name', 'Arthur Martins Prates');
