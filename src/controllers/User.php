@@ -36,20 +36,31 @@ class User
 
         try {
 
-            $this->mountConnectionDatabase();
-            $this->pdo->beginTransaction();
+            //$this->mountConnectionDatabase();
+            //$this->pdo->beginTransaction();
 
             $user = new UserModel();
+            $user->__set('id', 1);
             $user->__set('name', 'Arthur Martins Prates');
             $user->__set('password', '7896784567');
 
-            $userDAO = new UserDAO( $this->pdo );
-            $userDAO->new( $user );
+            $payload = [
 
-            $this->response['message'] = "Success";
+                'sub' => $user->__get('id'),
+                'name' => $user->__get('name')
+
+            ];
+
+            $auth = new Auth();
+            $token = $auth->generateToken( $payload, "login" );
+
+            /*$userDAO = new UserDAO( $this->pdo );
+            $userDAO->new( $user );*/
+
+            $this->response['token'] = $token;
             $this->httpStatusCode = 200;
 
-            $this->pdo->commit();
+            //$this->pdo->commit();
 
         }catch (\PDOException $pdoE){
 

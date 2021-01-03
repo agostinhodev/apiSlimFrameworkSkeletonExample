@@ -15,7 +15,7 @@ final class User
     {
 
         if(!isset($pdo) || is_null($pdo))
-            throw new \Exception("PDO it's necessary to mount a connection in class");
+            throw new \Exception("PDO object it's necessary to mount a connection in class: " . get_class());
 
         $this->pdo = $pdo->getConnection();
 
